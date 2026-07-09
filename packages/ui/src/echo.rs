@@ -1,12 +1,12 @@
-use dioxus::prelude::*;
 use api::{echo, get_mantra_atmosphere};
+use dioxus::prelude::*;
 
 const ECHO_CSS: Asset = asset!("/assets/styling/echo.css");
 
 #[component]
 pub fn Echo() -> Element {
     let mut response = use_signal(|| String::new());
-    
+
     let _mantra_data = use_resource(move || async move {
         get_mantra_atmosphere("some_gesture_data".to_string()).await
     });

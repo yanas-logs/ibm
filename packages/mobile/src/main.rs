@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-
+use ui::atmosphere::State;
 use ui::Navbar;
 use views::{Blog, Home};
 
@@ -23,18 +23,15 @@ fn main() {
 
 #[component]
 fn App() -> Element {
-    // Build cool things ✌️
+    use_context_provider(|| Signal::new(State::new()));
 
     rsx! {
-        // Global app resources
         document::Link { rel: "stylesheet", href: MAIN_CSS }
 
         Router::<Route> {}
     }
 }
 
-/// A mobile-specific Router around the shared `Navbar` component
-/// which allows us to use the mobile-specific `Route` enum.
 #[component]
 fn MobileNavbar() -> Element {
     rsx! {
